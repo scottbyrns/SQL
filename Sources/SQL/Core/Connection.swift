@@ -23,6 +23,7 @@
 // SOFTWARE.
 
 @_exported import Log
+import C7
 
 
 public protocol ConnectionInfo {
@@ -33,17 +34,13 @@ public protocol ConnectionInfo {
     var password: String? { get }
 }
 
-public protocol Connection: class {
+public protocol Connection: class, C7.Connection {
     associatedtype Info: ConnectionInfo
     associatedtype ResultType: Result
     associatedtype StatusType
     associatedtype Error: ErrorProtocol
 
     var connectionInfo: Info { get }
-
-    func open() throws
-
-    func close()
 
     var status: StatusType { get }
 
